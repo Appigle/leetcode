@@ -1,36 +1,41 @@
 /**
- * @param {number[]} nums1
- * @param {number} m
- * @param {number[]} nums2
- * @param {number} n
- * @return {void} Do not return anything, modify nums1 in-place instead.
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
  */
-var merge = function (nums1, m, nums2, n) {
-  let i = m - 1;
-  let j = n - 1;
-  let k = m + n - 1;
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+var inorderTraversal = function (root) {
+  const result = [];
+  const traverse = (node) => {
+    if (!node) return;
+    traverse(node.left);
+    result.push(node.val);
+    traverse(node.right);
+  };
+  traverse(root);
+  return result;
+};
 
-  while (i >= 0 && j >= 0) {
-    if (nums1[i] < nums2[j]) {
-      nums1[k] = nums2[j];
-      j--;
-    } else {
-      nums1[k] = nums1[i];
-      i--;
+const inorderTraversal2 = (root) => {
+  const result = [];
+  const stack = [];
+  let current = root;
+  while (current || stack.length > 0) {
+    while (current) {
+      stack.push(current);
+      current = current.left;
     }
-    k--;
+    current = stack.pop();
+    result.push(current.val);
+    current = current.right;
   }
-
-  while (j >= 0) {
-    nums1[k] = nums2[j];
-    j--;
-    k--;
-  }
+  return result;
 };
 
-const merge2 = (nums1, m, nums2, n) => {
-  nums1.splice(m, n, ...nums2);
-  nums1.sort((a, b) => a - b);
-};
-
-merge2([1, 2, 3, 0, 0, 0], 3, [2, 5, 6], 3);
+inorderTraversal2([1, null, 2, 3]);
