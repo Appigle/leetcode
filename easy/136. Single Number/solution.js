@@ -1,45 +1,23 @@
-const isPalindrome = (s) => {
-  const cleaned = s.replace(/[^a-zA-Z0-9]/gi, '').toLowerCase();
-  return cleaned === cleaned.split('').reverse().join('');
+const singleNumber = (nums) => {
+  const map = new Map();
+  for (const num of nums) {
+    map.set(num, (map.get(num) || 0) + 1);
+  }
+  for (const [num, count] of map) {
+    if (count === 1) return num;
+  }
 };
 
-isPalindrome('A man, a plan, a canal: Panama');
+singleNumber([2, 2, 1]);
 
 /**
- * @param {string} s
- * @return {boolean}
+ * @param {number[]} nums
+ * @return {number}
  */
-var isPalindrome2 = function (s) {
-  if (!s) return true;
-  const clean = s.replaceAll(/[^a-z0-9]/gi, '').toLowerCase();
-  let left = 0;
-  let right = clean.length - 1;
-  const mid = Math.floor(clean.length / 2);
-  for (let i = 0; i < mid; i++) {
-    if (clean[left + i] !== clean[right - i]) {
-      return false;
-    }
+var singleNumber2 = function (nums) {
+  let result = nums[0];
+  for (let i = 1; i < nums.length; i++) {
+    result ^= nums[i];
   }
-  return true;
+  return result;
 };
-
-var isPalindrome3 = function (s) {
-  let left = 0;
-  let right = s.length - 1;
-
-  while (left < right) {
-    while (left < right && !isAlphaNumeric(s[left])) left++;
-    while (left < right && !isAlphaNumeric(s[right])) right--;
-
-    if (s[left].toLowerCase() !== s[right].toLowerCase()) return false;
-
-    left++;
-    right--;
-  }
-
-  return true;
-};
-
-function isAlphaNumeric(char) {
-  return /^[a-z0-9]$/i.test(char);
-}
