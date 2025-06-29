@@ -15,7 +15,9 @@ const myAtoi = (s) => {
     const digit = s[i] - '0';
     if (
       result > Math.floor(INT_MAX / 10) ||
-      (result === Math.floor(INT_MAX / 10) && digit > 7)
+      (result === Math.floor(INT_MAX / 10) && digit > 7) ||
+      result < Math.ceil(INT_MIN / 10) ||
+      (result === Math.ceil(INT_MIN / 10) && digit > 8)
     ) {
       return sign === 1 ? INT_MAX : INT_MIN;
     }
