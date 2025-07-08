@@ -2,6 +2,7 @@
  * @param {number[]} nums
  * @param {number} target
  * @return {number[]}
+ *  O(n)
  */
 var searchRange = function (nums, target) {
   const len = nums.length;
