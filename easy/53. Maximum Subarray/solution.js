@@ -2,20 +2,6 @@
  * @param {number[]} nums
  * @return {number}
  */
-const maxSubArray = (nums) => {
-  let maxSum = nums[0];
-  let currentSum = nums[0];
-  for (let i = 1; i < nums.length; i++) {
-    currentSum = Math.max(nums[i], currentSum + nums[i]);
-    maxSum = Math.max(maxSum, currentSum);
-  }
-  return maxSum;
-};
-
-/**
- * @param {number[]} nums
- * @return {number}
- */
 function maxSubArray2(nums) {
   let currentSum = nums[0];
   let maxSum = nums[0];
@@ -127,3 +113,31 @@ maxSubArray2(nums);
  * Maximum subarray: (4) [4, -1, 2, 1]
  * Maximum sum: 6
  */
+
+const maxSubArray3 = (nums) => {
+  let maxSum = nums[0];
+  let currentSum = nums[0];
+  let start = 0;
+  let tempStart = 0;
+  let end = 0;
+
+  for (let i = 1; i < nums.length; i++) {
+    if (nums[i] > currentSum + nums[i]) {
+      currentSum = nums[i];
+      tempStart = i;
+    } else {
+      currentSum += nums[i];
+    }
+
+    if (currentSum > maxSum) {
+      maxSum = currentSum;
+      start = tempStart;
+      end = i;
+    }
+  }
+
+  const subarray = nums.slice(start, end + 1);
+  console.log(subarray);
+
+  return maxSum;
+};
