@@ -1,26 +1,21 @@
-74. Search a 2D Matrix
-    You are given an m x n integer matrix matrix with the following two properties:
+75. Sort Colors
+    Given an array nums with n objects colored red, white, or blue, sort them in-place so that objects of the same color are adjacent, with the colors in the order red, white, and blue.
 
-Each row is sorted in non-decreasing order.
-The first integer of each row is greater than the last integer of the previous row.
-Given an integer target, return true if target is in matrix or false otherwise.
+We will use the integers 0, 1, and 2 to represent the color red, white, and blue, respectively.
 
-You must write a solution in O(log(m \* n)) time complexity.
+You must solve this problem without using the library's sort function.
 
 Example 1:
-![01](./01.png)
 
-Input: matrix = [[1,3,5,7],[10,11,16,20],[23,30,34,60]], target = 3
-Output: true
+Input: nums = [2,0,2,1,1,0]
+Output: [0,0,1,1,2,2]
 Example 2:
-![02](./02.png)
 
-Input: matrix = [[1,3,5,7],[10,11,16,20],[23,30,34,60]], target = 13
-Output: false
+Input: nums = [2,0,1]
+Output: [0,1,2]
 
 Constraints:
 
-m == matrix.length
-n == matrix[i].length
-1 <= m, n <= 100
--104 <= matrix[i][j], target <= 104
+n == nums.length
+1 <= n <= 300
+nums[i] is either 0, 1, or 2.
